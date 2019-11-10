@@ -9,7 +9,7 @@ class TestOffers(unittest.TestCase):
         def __init__(self, offer_name):
             self.offer_name = offer_name
 
-        def apply(self, items):
+        def get_discount(self, items):
             pass
 
     def test_add_offer_to_Offers(self):
