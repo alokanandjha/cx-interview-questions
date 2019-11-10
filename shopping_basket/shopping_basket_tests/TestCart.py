@@ -29,3 +29,10 @@ class TestCart(unittest.TestCase):
         cart.remove_item(item_1, quantity_to_remove_from_cart)
         assert cart.show_items()[item_1] == quantity_to_add_to_cart - quantity_to_remove_from_cart
         assert self.catalogue.show_items()[item_1][1] == quantity_1 - quantity_to_add_to_cart + quantity_to_remove_from_cart
+
+    def test_calculate_discount(self):
+        pass
+
+    def test_calculate_totals(self):
+        pass
+

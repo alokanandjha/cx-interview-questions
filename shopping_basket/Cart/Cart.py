@@ -7,6 +7,8 @@ class Cart:
     def __init__(self):
         self._items = {}
         self._catalogue = Catalogue()
+        self._sub_total = 0.0
+        self._discount = 0.0
 
     def add_item(self, item: Item, quantity: int):
         if quantity <= 0 or quantity > self._catalogue.show_items()[item][1]:
@@ -25,3 +27,9 @@ class Cart:
 
     def show_items(self):
         return self._items
+
+    def apply_discount(self):
+        pass
+
+    def calculate_totals(self):
+        pass
