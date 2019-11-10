@@ -25,4 +25,5 @@ class Catalogue(metaclass=Singleton):
             del self._items[item]
 
     def show_items(self):
+        """passing a copy of catalogue to ensure catalogue can only be modified by add_item or remove_item method in catalogue"""
         return copy.copy(self._items)
