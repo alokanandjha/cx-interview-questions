@@ -18,7 +18,7 @@ class Catalogue(metaclass=Singleton):
             self._items[item] = [price, quantity]
 
     def add_existing_item(self, item: Item, additional_quantity: int):
-        if self._items[item] in None:
+        if self._items[item] is None:
             raise LookupError("Item not found")
         price = self._items[item][0]
         self.add_item(item, price, additional_quantity)
