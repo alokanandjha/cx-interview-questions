@@ -1,7 +1,8 @@
 import copy
+from shopping_basket.Singleton import Singleton
 from shopping_basket.Item import Item
 
-class Catalogue:
+class Catalogue(metaclass=Singleton):
 
     def __init__(self):
         self._items = {}
