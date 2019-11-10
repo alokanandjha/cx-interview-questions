@@ -17,5 +17,12 @@ class Catalogue(metaclass=Singleton):
         else:
             self._items[item] = [price, quantity]
 
+    def remove_item(self, item: Item, quantity: int):
+        if item not in self._items or self._items[item][1] < quantity:
+            raise ValueError("Incorrect Quantity to remove")
+        self._items[item][1] -= quantity
+        if self._items[item][1] == 0:
+            del self._items[item]
+
     def show_items(self):
         return copy.copy(self._items)
