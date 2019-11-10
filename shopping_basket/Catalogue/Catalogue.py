@@ -17,12 +17,17 @@ class Catalogue(metaclass=Singleton):
         else:
             self._items[item] = [price, quantity]
 
+    def add_existing_item(self, item: Item, additional_quantity: int):
+        if self._items[item] in None:
+            raise LookupError("Item not found")
+        price = self._items[item][0]
+        self.add_item(item, price, additional_quantity)
+
     def remove_item(self, item: Item, quantity: int):
         if item not in self._items or self._items[item][1] < quantity:
             raise ValueError("Incorrect Quantity to remove")
         self._items[item][1] -= quantity
-        if self._items[item][1] == 0:
-            del self._items[item]
+
 
     def show_items(self):
         """passing a copy of catalogue to ensure catalogue can only be modified by add_item or remove_item method in catalogue"""

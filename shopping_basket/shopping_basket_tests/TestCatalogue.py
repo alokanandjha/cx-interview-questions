@@ -37,8 +37,15 @@ class TestCatalogue(unittest.TestCase):
     def remove_all_quantity_of_an_item_from_catalogue(self):
         an_item, price, quantity = Item("AnItem"), 2.0, 10
         self.catalogue.add_item(an_item, price, quantity)
-        if item in self.catalogue.show_items():
-            self.catalogue.remove_item(an, 10)
-        assert an_item not in self.catalogue.show_items()
+        if an_item in self.catalogue.show_items():
+            self.catalogue.remove_item(an_item, 10)
+        assert self.catalogue.show_items()[an_item][1] == 0
+
+    def add_more_quantity_without_adding_price(self):
+        item, price, quantity = Item("Item"), 2.0, 10
+        self.catalogue.add_item(item, price, quantity)
+        additional_quantity = 10
+        self.catalogue.add_existing_item(item, additional_quantity = additional_quantity)
+        assert self.catalogue.show_items()[item][1] == 20
 
 
