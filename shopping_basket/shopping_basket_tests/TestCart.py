@@ -69,8 +69,45 @@ class TestCart(unittest.TestCase):
         actual_discount = cart.calculate_discount()
         assert actual_discount == expected_discount
 
+    def test_calculate_sub_total(self):
+        item_1, price_1, quantity_1 = Item("an_item_1"), 100.0, 20
+        item_2, price_2, quantity_2 = Item("an_item_2"), 200.0, 20
+        quantity_to_add_to_cart_1 = 2
+        quantity_to_add_to_cart_2 = 2
+        self.catalogue.clear_catalogue()
+        self.catalogue.add_item(item_1, price_1, quantity_1)
+        self.catalogue.add_item(item_2, price_2, quantity_2)
+
+        expected_sub_total = 600.0
+
+        cart = Cart()
+        cart.add_item(item_1, quantity_to_add_to_cart_1)
+        cart.add_item(item_2, quantity_to_add_to_cart_2)
+
+        actual_sub_total = cart.calculate_sub_total()
+        assert  actual_sub_total == expected_sub_total
+
 
 
     def test_calculate_totals(self):
-        pass
+        item_1, price_1, quantity_1 = Item("an_item_1"), 100.0, 20
+        item_2, price_2, quantity_2 = Item("an_item_2"), 100.0, 20
+        quantity_to_add_to_cart_1 = 2
+        quantity_to_add_to_cart_2 = 2
+        self.catalogue.clear_catalogue()
+        self.catalogue.add_item(item_1, price_1, quantity_1)
+        self.catalogue.add_item(item_2, price_2, quantity_2)
+        Offers().clear_offers()
+        an_offer = PercentOffer("p1", 10, item_1)
+        another_offer = PercentOffer("p2", 20, item_2)
+        Offers().add_offer(an_offer)
+        Offers().add_offer(another_offer)
 
+        expected_totals = 340.0
+
+        cart = Cart()
+        cart.add_item(item_1, quantity_to_add_to_cart_1)
+        cart.add_item(item_2, quantity_to_add_to_cart_2)
+
+        actual_total = cart.calculate_totals()
+        assert actual_total == expected_totals

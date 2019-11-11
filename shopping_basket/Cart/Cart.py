@@ -52,7 +52,12 @@ class Cart:
 
         return max(discount_summary)
 
+    def calculate_sub_total(self):
+        sub_total = 0.0
+        for item in self._items:
+            sub_total += Catalogue().show_items()[item][0] * self._items[item]
+        return sub_total
 
 
     def calculate_totals(self):
-        pass
+        return self.calculate_sub_total() - self.calculate_discount()
