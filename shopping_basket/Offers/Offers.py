@@ -3,7 +3,7 @@ from shopping_basket.Singleton import Singleton
 from shopping_basket.Offers.BaseOffer import BaseOffer
 
 class Offers(metaclass=Singleton):
-
+    """This is single copy of the list of all offers"""
     def __init__(self):
         self._offers = []
 
