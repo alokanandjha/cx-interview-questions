@@ -32,7 +32,6 @@ class Cart:
         return copy.copy(self._items)
 
     def calculate_discount(self):
-        print(self.show_items())
         return self._calc_disc(Offers().show_offers(), self.show_items())
 
 
@@ -42,12 +41,12 @@ class Cart:
         discount_summary = []
 
         for offer in offer_list:
-            discount, remaining_items = offer.get_discount_and_remaining_items(remaining_items)
+            discount, ri = offer.get_discount_and_remaining_items(remaining_items)
+            offer_list1 = copy.copy(offer_list)
             if discount == 0.0:
-                offer_list.remove(offer)
+                offer_list1.remove(offer)
             else:
-                discount_summary.append(discount + self._calc_disc(offer_list, remaining_items))
-
+                discount_summary.append(discount + self._calc_disc(offer_list1, ri))
         if not discount_summary:
             return 0.0
 

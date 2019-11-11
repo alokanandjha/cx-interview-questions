@@ -13,6 +13,7 @@ class PercentOffer(BaseOffer):
         self._percent = percent
 
     def get_discount_and_remaining_items(self, items):
+        discount = 0.0
         if self._item in items and items[self._item] > 0:
             item_price = Catalogue().show_items()[self._item][0]
             discount = item_price * self._percent / 100
