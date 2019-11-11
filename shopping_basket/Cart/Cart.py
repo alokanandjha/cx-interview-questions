@@ -1,5 +1,8 @@
+import copy
 from shopping_basket.Catalogue.Catalogue import Catalogue
 from shopping_basket.Item import Item
+from shopping_basket.Offers.Offers import Offers
+
 
 
 class Cart:
@@ -26,10 +29,31 @@ class Cart:
         self._catalogue.add_existing_item(item, quantity)
 
     def show_items(self):
-        return self._items
+        return copy.copy(self._items)
 
-    def apply_discount(self):
-        pass
+    def calculate_discount(self):
+        print(self.show_items())
+        return self._calc_disc(Offers().show_offers(), self.show_items())
+
+
+    def _calc_disc(self, offer_list, remaining_items):
+        if len(offer_list) == 0 or len(remaining_items) == 0:
+            return 0.0
+        discount_summary = []
+
+        for offer in offer_list:
+            discount, remaining_items = offer.get_discount_and_remaining_items(remaining_items)
+            if discount == 0.0:
+                offer_list.remove(offer)
+            else:
+                discount_summary.append(discount + self._calc_disc(offer_list, remaining_items))
+
+        if not discount_summary:
+            return 0.0
+
+        return max(discount_summary)
+
+
 
     def calculate_totals(self):
         pass

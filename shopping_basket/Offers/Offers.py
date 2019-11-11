@@ -19,3 +19,6 @@ class Offers(metaclass=Singleton):
 
     def show_offers(self):
         return copy.copy(self._offers)
+
+    def clear_offers(self):
+        self._offers = []
