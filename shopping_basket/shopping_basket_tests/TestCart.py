@@ -3,6 +3,7 @@ from shopping_basket.Item import Item
 from shopping_basket.Catalogue.Catalogue import Catalogue
 from shopping_basket.Cart.Cart import Cart
 from shopping_basket.Offers.PercentOffer import PercentOffer
+from shopping_basket.Offers.BuynGetmOffer import BuynGetmOffer
 from shopping_basket.Offers.Offers import Offers
 
 
@@ -104,6 +105,50 @@ class TestCart(unittest.TestCase):
         Offers().add_offer(another_offer)
 
         expected_totals = 340.0
+
+        cart = Cart()
+        cart.add_item(item_1, quantity_to_add_to_cart_1)
+        cart.add_item(item_2, quantity_to_add_to_cart_2)
+
+        actual_total = cart.calculate_totals()
+        assert actual_total == expected_totals
+
+
+    def test_calculate_totals_for_BuynGetm(self):
+        item_1, price_1, quantity_1 = Item("an_item_1"), 100.0, 20
+        item_2, price_2, quantity_2 = Item("an_item_2"), 100.0, 20
+        quantity_to_add_to_cart_1 = 4
+        quantity_to_add_to_cart_2 = 4
+        self.catalogue.clear_catalogue()
+        self.catalogue.add_item(item_1, price_1, quantity_1)
+        self.catalogue.add_item(item_2, price_2, quantity_2)
+        Offers().clear_offers()
+        an_offer = BuynGetmOffer("b1", 3, 1, item_1)
+        Offers().add_offer(an_offer)
+
+        expected_totals = 700.0
+
+        cart = Cart()
+        cart.add_item(item_1, quantity_to_add_to_cart_1)
+        cart.add_item(item_2, quantity_to_add_to_cart_2)
+
+        actual_total = cart.calculate_totals()
+        assert actual_total == expected_totals
+
+    def test_calculate_totals_for_BuynGetm_and_percent(self):
+        item_1, price_1, quantity_1 = Item("an_item_1"), 100.0, 20
+        item_2, price_2, quantity_2 = Item("an_item_2"), 100.0, 20
+        quantity_to_add_to_cart_1 = 4
+        quantity_to_add_to_cart_2 = 4
+        self.catalogue.clear_catalogue()
+        self.catalogue.add_item(item_1, price_1, quantity_1)
+        self.catalogue.add_item(item_2, price_2, quantity_2)
+        Offers().clear_offers()
+        an_offer = BuynGetmOffer("b1", 3, 1, item_1)
+        another_offer = PercentOffer("b2", 50, item_2)
+        Offers().add_offer(an_offer)
+        Offers().add_offer(another_offer)
+        expected_totals = 500.0
 
         cart = Cart()
         cart.add_item(item_1, quantity_to_add_to_cart_1)
