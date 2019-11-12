@@ -30,11 +30,22 @@ class TestCart(unittest.TestCase):
 
         baked_bean_offer = BuynGetmOffer("bakedBean2For1", 2, 1, self.baked_bean)
         sardines_offer = PercentOffer("Sardines25", 25, self.sardines)
-
+        shampoo_offer = BuynOfXOffer("ShampooSet3", 3, {self.shampoo_small, self.shampoo_medium, self.shampoo_large} )
         Offers().add_offer(baked_bean_offer)
         Offers().add_offer(sardines_offer)
+        Offers().add_offer(shampoo_offer)
 
-    def test_scenario_2(self):
+    def test_assignment_scenario_1(self):
+        self.setup()
+        basket1 = Cart()
+        basket1.add_item(self.baked_bean, 4)
+        basket1.add_item(self.biscuits, 1)
+
+        assert basket1.calculate_sub_total() == 5.16
+        assert basket1.calculate_discount() == 0.99
+        assert basket1.calculate_totals() == 4.17
+
+    def test_assignment_scenario_2(self):
         self.setup()
         basket2 = Cart()
         basket2.add_item(self.baked_bean, 2)
@@ -45,16 +56,16 @@ class TestCart(unittest.TestCase):
         assert basket2.calculate_discount() == 0.95
         assert basket2.calculate_totals() == 6.01
 
-    def test_scenario_1(self):
+    def test_assignment_scenario_3(self):
         self.setup()
-        basket1 = Cart()
-        basket1.add_item(self.baked_bean, 4)
-        basket1.add_item(self.biscuits, 1)
+        basket3 = Cart()
+        basket3.add_item(self.shampoo_large, 3)
+        basket3.add_item(self.shampoo_medium, 1)
+        basket3.add_item(self.shampoo_small, 2)
 
-        assert basket1.calculate_sub_total() == 5.16
-        assert basket1.calculate_discount() == 0.99
-        assert basket1.calculate_totals() == 4.17
-
+        assert basket3.calculate_sub_total() == 17.00
+        assert basket3.calculate_discount() == 5.50
+        assert basket3.calculate_totals() == 11.50
 
     def test_add_item_to_cart(self):
         item_1, price_1, quantity_1 = Item("Item_1"), 2.0, 20

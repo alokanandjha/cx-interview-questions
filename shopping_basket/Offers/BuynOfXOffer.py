@@ -21,7 +21,6 @@ class BuynOfXOffer(BaseOffer):
     def get_discount_and_remaining_items(self, items):
         discount = 0.0
 
-        '''items = sorted(items, key=self._price, reverse=True)'''
         items_selected_for_discount = {}
 
         for x in self._X:
@@ -32,7 +31,8 @@ class BuynOfXOffer(BaseOffer):
                 if x in items:
                     qty_available = items[x]
                 qty_x = qty_needed_to_fill if qty_available>qty_needed_to_fill else qty_available
-                items_selected_for_discount[x] = qty_x
+                if qty_x>0:
+                    items_selected_for_discount[x] = qty_x
             if sum(items_selected_for_discount.values()) == self._n:
                 for i in items_selected_for_discount:
                     items[i] -= items_selected_for_discount[i]
