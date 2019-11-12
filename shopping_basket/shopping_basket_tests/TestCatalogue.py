@@ -1,6 +1,7 @@
 import unittest
-from shopping_basket.Item import Item
-from shopping_basket.Catalogue.Catalogue import Catalogue
+from Common.Item import Item
+from Catalogue.Catalogue import Catalogue
+
 
 class TestCatalogue(unittest.TestCase):
     catalogue = Catalogue()

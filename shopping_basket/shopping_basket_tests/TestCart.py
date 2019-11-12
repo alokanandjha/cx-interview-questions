@@ -1,10 +1,10 @@
 import unittest
-from shopping_basket.Item import Item
-from shopping_basket.Catalogue.Catalogue import Catalogue
-from shopping_basket.Cart.Cart import Cart
-from shopping_basket.Offers.PercentOffer import PercentOffer
-from shopping_basket.Offers.BuynGetmOffer import BuynGetmOffer
-from shopping_basket.Offers.Offers import Offers
+from Common.Item import Item
+from Catalogue.Catalogue import Catalogue
+from Cart.Cart import Cart
+from Offers.PercentOffer import PercentOffer
+from Offers.BuynGetmOffer import BuynGetmOffer
+from Offers.Offers import Offers
 
 
 class TestCart(unittest.TestCase):

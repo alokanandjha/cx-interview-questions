@@ -1,8 +1,7 @@
 import copy
-from shopping_basket.Catalogue.Catalogue import Catalogue
-from shopping_basket.Item import Item
-from shopping_basket.Offers.Offers import Offers
-
+from Common.Item import Item
+from Catalogue.Catalogue import Catalogue
+from Offers.Offers import Offers
 
 
 class Cart:

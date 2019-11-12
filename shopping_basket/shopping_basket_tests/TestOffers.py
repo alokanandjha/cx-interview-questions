@@ -1,6 +1,7 @@
 import unittest
-from shopping_basket.Offers.BaseOffer import BaseOffer
-from shopping_basket.Offers.Offers import Offers
+from Offers.BaseOffer import BaseOffer
+from Offers.Offers import Offers
+
 
 class TestOffers(unittest.TestCase):
     offers = Offers()

@@ -1,6 +1,7 @@
 import copy
-from shopping_basket.Singleton import Singleton
-from shopping_basket.Item import Item
+from Common.Item import Item
+from Common.Singleton import Singleton
+
 
 class Catalogue(metaclass=Singleton):
 
@@ -8,9 +9,9 @@ class Catalogue(metaclass=Singleton):
         self._items = {}
 
     def add_item(self, item: Item, price: float, quantity: int):
-        if quantity<=0:
+        if quantity <= 0:
             raise ValueError("Not a valid quantity")
-        if price<=0:
+        if price <= 0:
             raise ValueError("Not a valid price")
         if item in self._items:
             self._items[item] = [price, self._items[item][1] + quantity]
@@ -27,7 +28,6 @@ class Catalogue(metaclass=Singleton):
         if item not in self._items or self._items[item][1] < quantity:
             raise ValueError("Incorrect Quantity to remove")
         self._items[item][1] -= quantity
-
 
     def show_items(self):
         """passing a copy of catalogue to ensure catalogue can only be modified by add_item or remove_item method in catalogue"""

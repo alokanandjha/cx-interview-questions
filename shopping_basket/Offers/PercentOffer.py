@@ -1,7 +1,8 @@
-from shopping_basket.Offers.BaseOffer import BaseOffer
-from shopping_basket.Offers.Offers import Offers
-from shopping_basket.Item import Item
-from shopping_basket.Catalogue.Catalogue import Catalogue
+from Offers.BaseOffer import BaseOffer
+from Offers.Offers import Offers
+from Common.Item import Item
+from Catalogue.Catalogue import Catalogue
+
 
 class PercentOffer(BaseOffer):
 
