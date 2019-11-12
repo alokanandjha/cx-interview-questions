@@ -20,7 +20,6 @@ class BuynOfXOffer(BaseOffer):
 
     def get_discount_and_remaining_items(self, items):
         discount = 0.0
-
         items_selected_for_discount = {}
 
         for x in self._X:
