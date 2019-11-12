@@ -15,9 +15,18 @@ class BuynGetmOffer(BaseOffer):
         self._m = m
 
     def get_discount_and_remaining_items(self, items):
-        discount = 0.0
+        """
+        gets the discount by applying this offer once on the items
+        ---
+        Params:
+            items: all items along with their quantity e.g. {item1: quantity1, item2: quantity2} where item1, item2 are of type Item, and quantity1, quantity2 are of type int
+        ---
+        Returns:
+            discount on single application of this offer, and remaining items on which discount is not applied
+        """
+        discount = 0.00
         if self._item in items and items[self._item] >= self._n+self._m:
-            item_price = Catalogue().show_items()[self._item][0]
+            item_price = Catalogue().get_price(self._item)
             discount = item_price
             items[self._item] -= (self._n+self._m)
             if items[self._item] == 0:

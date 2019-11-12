@@ -9,6 +9,12 @@ class Offers(metaclass=Singleton):
         self._offers = []
 
     def add_offer(self, offer: BaseOffer):
+        """
+        adds offer of type BaseOffer to the list
+        ---
+        Params:
+            offer: is a type of BaseOffer
+        """
         if offer not in self._offers:
             self._offers.append(offer)
         else:

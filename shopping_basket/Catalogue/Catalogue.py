@@ -18,10 +18,16 @@ class Catalogue(metaclass=Singleton):
         else:
             self._items[item] = [price, quantity]
 
+    def get_price(self, item: Item):
+        return self._items[item][0]
+
+    def get_available_quantity(self, item: Item):
+        return self._items[item][1]
+
     def add_existing_item(self, item: Item, additional_quantity: int):
         if self._items[item] is None:
             raise LookupError("Item not found")
-        price = self._items[item][0]
+        price = self.get_price(item)
         self.add_item(item, price, additional_quantity)
 
     def remove_item(self, item: Item, quantity: int):
@@ -35,3 +41,4 @@ class Catalogue(metaclass=Singleton):
 
     def clear_catalogue(self):
         self._items = {}
+
