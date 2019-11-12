@@ -18,7 +18,7 @@ The discount should be applied at the time of checkout (which is not implemented
 
 An Offer is created as abstract class - BaseOffer, and new type of offers can be created from it.
 
-PercentOffer and BuynGetmOffer are created as new types of offers.
+PercentOffer, BuynGetmOffer, BuynOfX are created as new types of offers.
 
 Each offer has to be added to Offers list by using add_offer method for it to be applied. An offer can be removed by calling remove_offer method in offers.
 

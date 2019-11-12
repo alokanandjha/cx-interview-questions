@@ -4,6 +4,7 @@ from Offers.Offers import Offers
 from Common.Item import Item
 from Catalogue.Catalogue import Catalogue
 
+
 class TestOffers(unittest.TestCase):
     offers = Offers()
 

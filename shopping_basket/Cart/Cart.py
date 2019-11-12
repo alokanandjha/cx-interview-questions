@@ -40,11 +40,11 @@ class Cart:
 
         for offer in offer_list:
             discount, ri = offer.get_discount_and_remaining_items(remaining_items)
-            offer_list1 = copy.copy(offer_list)
+            offer_list_copy = copy.copy(offer_list)
             if discount == 0.0:
-                offer_list1.remove(offer)
+                offer_list_copy.remove(offer)
             else:
-                discount_summary.append(discount + self._calc_disc(offer_list1, ri))
+                discount_summary.append(discount + self._calc_disc(offer_list_copy, ri))
         if not discount_summary:
             return 0.0
 
