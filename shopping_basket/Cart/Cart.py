@@ -1,5 +1,6 @@
 import copy
 from Common.Item import Item
+from Common import Utility
 from Catalogue.Catalogue import Catalogue
 from Offers.Offers import Offers
 
@@ -31,7 +32,8 @@ class Cart:
         return copy.copy(self._items)
 
     def calculate_discount(self):
-        return self._calc_disc(Offers().show_offers(), self.show_items())
+        discount = Utility.round_up(self._calc_disc(Offers().show_offers(), self.show_items()), 2)
+        return discount
 
     def _calc_disc(self, offer_list, remaining_items):
         if len(offer_list) == 0 or len(remaining_items) == 0:
@@ -54,7 +56,7 @@ class Cart:
         sub_total = 0.0
         for item in self._items:
             sub_total += Catalogue().show_items()[item][0] * self._items[item]
-        return sub_total
+        return Utility.round_up(sub_total, 2)
 
     def calculate_totals(self):
-        return self.calculate_sub_total() - self.calculate_discount()
+        return Utility.round_up(self.calculate_sub_total() - self.calculate_discount(), 2)
