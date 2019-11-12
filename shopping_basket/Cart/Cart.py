@@ -33,7 +33,6 @@ class Cart:
     def calculate_discount(self):
         return self._calc_disc(Offers().show_offers(), self.show_items())
 
-
     def _calc_disc(self, offer_list, remaining_items):
         if len(offer_list) == 0 or len(remaining_items) == 0:
             return 0.0
@@ -56,7 +55,6 @@ class Cart:
         for item in self._items:
             sub_total += Catalogue().show_items()[item][0] * self._items[item]
         return sub_total
-
 
     def calculate_totals(self):
         return self.calculate_sub_total() - self.calculate_discount()
